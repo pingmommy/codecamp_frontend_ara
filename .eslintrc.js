@@ -9,28 +9,15 @@ module.exports = {
     "prettier",
     // "plugin:@typescript-eslint/recommended-type-checked",
   ],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: [".eslintrc.{js,cjs}"],
-      parserOptions: {
-        sourceType: "script",
-      },
-    },
-  ],
+  overrides: [],
   parserOptions: {
-    tsconfigRootDir: "D:/03_Src/CODECAMP-FRONTEND-ARA",
-    project: "class/tsconfig.json",
+    project: "**/tsconfig.json",
     ecmaVersion: "latest",
     sourceType: "module",
   },
   plugins: ["react"],
   rules: {
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/prefer-nullish-coalescing": "error",
-    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/no-misused-promises": "off",
   },
-  quiet: true,
 };

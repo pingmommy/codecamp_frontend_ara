@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export default function CounterStatePage() {
+export default function CounterStatePage(): JSX.Element {
   const [count, setCount] = useState(0);
 
-  function onClickCountUp() {
+  function onClickCountUp(): void {
     // state의 값을 가져온다.
     // setCount(count + 1);
     // setCount(count + 1);

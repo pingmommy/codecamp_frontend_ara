@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import type { MouseEvent } from "react";
 
 export default function CommentItem(props: any): JSX.Element {
   const [isEdit, setIsEdit] = useState(false);
 
-  const onClickEdit = (event: MouseEvent<HTMLButtonElement>): void => {
+  const onClickEdit = (): void => {
     setIsEdit(true);
   };
   return (

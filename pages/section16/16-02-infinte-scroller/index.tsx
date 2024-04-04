@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
+
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -23,15 +24,29 @@ export default function StaticRoutingMovedPage(): JSX.Element {
   >(FETCH_BOARDS);
 
   const onLoadMore = (): void => {
-    fetchMore({
-      variables: {},
-      updateQuery: () => {},
+    if (data === undefined) return;
+    void fetchMore({
+      variables: { page: Math.ceil(data?.fetchBoards.length ?? 10 / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchBoards === undefined)
+          return {
+            fetchBoards: [...prev.fetchBoards],
+          };
+        return {
+          fetchBoards: [...prev.fetchBoards, ...fetchMoreResult.fetchBoards],
+        };
+      },
     });
   };
 
   return (
-    <div>
-      <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
+    <div style={{ height: "700px", overflow: "auto" }}>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={onLoadMore}
+        hasMore={true}
+        useWindow={false}
+      >
         {data?.fetchBoards.map((el) => (
           <div key={el._id}>
             <span style={{ margin: "10px" }}>{el.writer}</span>

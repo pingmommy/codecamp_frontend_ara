@@ -11,7 +11,7 @@ export default function CounterStatePage(): JSX.Element {
   return (
     <>
       <Child1 count={count} setCount={setCount} />
-      <div></div>
+      <div>==================================================</div>
       <Child2 count={count} onClickCount={onClickCount} />
     </>
   );

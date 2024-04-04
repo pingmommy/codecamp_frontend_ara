@@ -8,6 +8,18 @@ export default function ModalAlertPage(): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
+  // 모달을 여는 함수 - 모달은 open프로퍼티가 true이면 열린다.
+  // const showModal = () => {
+  //   setIsOpen((prev) => !prev);
+  // };
+  // const handleOk = () => {
+  //   setIsOpen((prev) => !prev);
+  // };
+
+  // const cancel = () => {
+  //   setIsOpen((prev) => !prev);
+  // };
+
   const handleComplete = (data: Address): void => {
     console.log(data);
     onToggleModal();

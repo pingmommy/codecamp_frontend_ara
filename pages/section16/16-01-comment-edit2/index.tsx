@@ -32,11 +32,13 @@ export default function StaticRoutingMovedPage(): JSX.Element {
   ]);
 
   const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
-    FETCH_BOARDS,
+    FETCH_BOARDS
   );
 
   const onClickEdit = (event: MouseEvent<HTMLButtonElement>): void => {
-    console.log("");
+    const qqq = [...myIdex];
+    qqq[Number(event.currentTarget.id)] = true;
+    setMyIdex(qqq);
   };
   return (
     <div>
@@ -51,7 +53,7 @@ export default function StaticRoutingMovedPage(): JSX.Element {
           </div>
         ) : (
           <input type="text" key={el._id} />
-        ),
+        )
       )}
     </div>
   );

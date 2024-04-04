@@ -19,9 +19,7 @@ export default function ModalAlertPage(): JSX.Element {
         open={isOpen}
         onOk={handleOK}
         onCancel={handleCancel}
-      >
-        비밀번호입력: <input type="password"></input>
-      </Modal>
+      ></Modal>
     </>
   );
 }

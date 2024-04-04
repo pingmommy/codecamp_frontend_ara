@@ -1,3 +1,4 @@
+import BoardWrite from "../../../../../src/component/unit/board/09-write/BoardWrite.container";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
@@ -10,8 +11,6 @@ const FETCH_BOARD = gql`
     }
   }
 `;
-
-import BoardWrite from "../../../../../src/component/unit/board/09-write/BoardWrite.container";
 
 export default function BoardEditPage() {
   const router = useRouter();

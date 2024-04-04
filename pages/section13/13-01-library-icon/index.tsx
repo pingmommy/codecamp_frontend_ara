@@ -17,7 +17,7 @@ export default function LibraryIconPage(): JSX.Element {
 
   return (
     <div id="삭제할게시글ID" onClick={onclickDelete}>
-      <MyIcon rev="site" id="삭제할 게시글ID" onClick={onclickDelete} />
+      <MyIcon id="삭제할 게시글ID" onClick={onclickDelete} />
     </div>
   );
 }

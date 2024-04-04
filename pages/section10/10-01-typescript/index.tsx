@@ -51,7 +51,7 @@ export default function TypeScriptPage() {
     return num1 + num2 + unit;
   };
 
-  const result2 = add(1000, 2000, "원");
+  const result2 = add(1000, 2000, "원"); //결과의 리턴타입도 에측 가능!!
 
   //any타입 (가급적 자제) - 자바스크립트와 동일
   let qqq: any = "철수";
