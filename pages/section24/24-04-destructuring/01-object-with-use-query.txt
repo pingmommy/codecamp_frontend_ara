@@ -1,0 +1,18 @@
+function useQuery(qqq) {
+
+    // qqq api 요청하기
+    
+    return{
+        data:{fetchBoard:{writer:"철수"}},
+        refetch:()=>{
+            console.log("리페치실행")
+            }
+    }
+}
+
+const {data,refetch}=useQuery("qqq")
+
+data.fetchBoard.writer
+'철수'
+refetch()
+VM311:5 리페치실행
