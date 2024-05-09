@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+    <script>
+      // myaxios 함수
+      const myaxios = {
+        get: (url, callbackArgu) => {
+          const qq = new XMLHttpRequest();
+          qq.open("get", url);
+          qq.send();
+          qq.addEventListener("load", (res) => {
+            console.log(res);
+          });
+        },
+        post: () => {},
+      };
+
+      // axios 요청함수
+      const onClickAxios = () => {
+        // axios 요청하기
+        myaxios.get("https://koreanjson.com/posts/1", () => {});
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="onClickAxios()">버튼</button>
+  </body>
+</html>

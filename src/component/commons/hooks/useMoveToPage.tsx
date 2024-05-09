@@ -13,7 +13,7 @@ export const useMoveToPage = (): IUseMoveToPageReTurn => {
   const [visitedPage, setVisitedPage] = useRecoilState(visitedPageState);
 
   const onclickMoveToPage = (path: string) => () => {
-    setVisitedPage(path); // 로그인페이지 일때는 set..하지 않도록 조건 추가해야 한다.
+    // setVisitedPage(path); // 로그인페이지 일때는 set..하지 않도록 조건 추가해야 한다.
     // localStorage.setItem("visitedPage",path) // 로컬스토리지도 가능!
     void router.push(path);
   };

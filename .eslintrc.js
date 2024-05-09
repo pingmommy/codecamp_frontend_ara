@@ -22,5 +22,6 @@ module.exports = {
     "react/display-name": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
   },
 };

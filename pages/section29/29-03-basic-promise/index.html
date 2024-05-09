@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>promise</title>
+    <!-- 원래는 2가지 방법 아니었음.  처음에 Promise는 .then()으로 받음. 이것도 복잡하니까 AsyncAwait방식이 생김-->
+    <script>
+      const onclickThen = () => {
+        new Promise((resolve, reject) => {
+          try {
+            // 여기에서 API요청을 한다면?
+            setTimeout(() => {
+              const response = "강아지"; // 2초가 걸려서 백엔드에서 "강아지" 데이터를 받아온다.
+              resolve(response); // 성공하면 이거 실행.
+            }, 2000);
+          } catch (error) {
+            reject(error.message); // 실패하면 이거 실행.
+          }
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+      const onclickAwait = async () => {
+        const result = await new Promise((resolve, reject) => {
+          try {
+            // 여기에서 API요청을 한다면?
+            setTimeout(() => {
+              const response = "강아지"; // 2초가 걸려서 백엔드에서 "강아지" 데이터를 받아온다.
+              resolve(response); // 성공하면 이거 실행.
+            }, 2000);
+          } catch (error) {
+            reject(error.message); // 실패하면 이거 실행.
+          }
+        });
+        console.log(result);
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="onclickThen()">promise(.then)</button>
+    <button onclick="onclickAwait()">promise(await)</button>
+  </body>
+</html>

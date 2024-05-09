@@ -1,0 +1,154 @@
+<!-- 
+1. 랜덤한 숫자 받아오기(1-200)
+2. 70번 게시글 조회
+3.작성자가 작성한 다른 글들 조회하기
+ -->
+
+<!--
+'http://numbersapi.com/random?min=1&max=200'
+
+'https://koreanjson.com/posts/${num}'
+
+'https://koreanjson.com/posts/?userId=${userId}'
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>callback</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            //  addEventListener()가 어떻게 동작하는지 대략 추측해보자면 다음과 같다.
+
+            //   function addEventListener(aaa, bbb) {
+            //     // 세팅된 API 주소로 요청!!
+            //     const res = 70; // 세팅된 API 주소로부터 받아온 결과
+
+            //     if (aaa === "load") {
+            //       bbb(res);
+            //     }
+            //   }
+
+            const myCallback = () => {
+                // 콜백지옥 ===> 유지보수 어렵다.... 개선하기 위해 promise!
+                const aa = new XMLHttpRequest();
+                aa.open("get", "http://numbersapi.com/random?min=1&max=200");
+                aa.send();
+                aa.addEventListener("load", (res) => {
+                    console.log(res); //  API 요청 결과
+                    const num = res.target.response.split(" ")[0];
+
+                    const bb = new XMLHttpRequest();
+                    bb.open("get", `https://koreanjson.com/posts/${num}`);
+                    bb.send();
+                    bb.addEventListener("load", (res) => {
+                        console.log(res); // API 요청결과
+                        const userId = JSON.parse(res.target.response).UserId; //  작성자ID
+                        const cc = new XMLHttpRequest();
+
+                        cc.open("get", `https://koreanjson.com/posts/?userId=${userId}`);
+                        cc.send();
+                        cc.addEventListener("load", (res) => {
+                            console.log(res); // 최종 API 결과
+                        });
+                    });
+                });
+            };
+
+            // new Promise((성공했을떄실행시킬함수, 실패했을떄실행시킬함수) => {
+            //     try {
+            //         // 여기서 API 요청을 한다면?
+            //         const response = "철수"; // 백엔드에서 "철수 "데이터 받아옴.
+            //         성공했을떄실행시킬함수(); // 성공하면 이거 실행
+            //     } catch (error) {
+            //         실패했을떄실행시킬함수("실패했습니다!"); // 실패하면 이거 실행
+            //     }
+            // })
+            //     .then((qqq) => {
+            //         console.log(qqq); //"철수"
+            //     })
+            //     .catch((rrr) => {
+            //         console.log(rrr); // "실패했습니다!"
+            //     });
+
+            const axios = {
+                get: () => {
+                    return new Promise((성공함수, 실패함수) => {});
+                },
+                post: () => {
+                    return new Promise((성공함수, 실패함수) => {});
+                },
+            };
+
+            const myPromise = () => {
+                //axios자체가 promise로 만들어졌기 때문에, promise를 지원해주는 기능이다. AsyncAwait가 없던 시절에는 .then()하여 결과를 받아서 사용함.
+
+                // 요즘 만들어진 api 요청도구들은 다 Promise 기반이다. Promise는 뒤에 .then()을 붙일 수도 있지만 앞에 await를 붙일 수도 있구나
+                axios.get("http://numbersapi.com/random?min=1&max=200").then((qqq) => {
+                    axios.get("http://numbersapi.com/random?min=1&max=200").then((qqq) => {
+                        axios.get("http://numbersapi.com/random?min=1&max=200").then((qqq) => {
+                            // qqq 최종결과
+                        });
+                    });
+                }); // 또 콜백지옥이네???
+
+                // 프로미스 안에서 프로미스를 리턴하면 프로미스 체이닝을 할 수 있다.
+
+                console.log("1번쨰로 실행됩니다.");
+                axios
+                    .get("http://numbersapi.com/random?min=1&max=200")
+                    .then((qqq) => {
+                        console.log("2번쨰로 실행됩니다.");
+
+                        return axios.get("http://numbersapi.com/random?min=1&max=200");
+                    })
+                    .then((qqq) => {
+                        console.log("3번쨰로 실행됩니다.");
+
+                        return axios.get("http://numbersapi.com/random?min=1&max=200");
+                    })
+                    .then((qqq) => {
+                        console.log("4번쨰로 실행됩니다.");
+
+                        // qqq 최종결과
+                    });
+                console.log("5번쨰로 실행됩니다.");
+            };
+
+            // axios,fetch (fetch(): 자바스크립트에 내장되어 있는 api요청도구)등 => 대표적인 Promise를 지원하는 기능
+            // axios, fetch 등을 기다리는 2가지 방법
+            // 1. .then() 활용
+            // 2. await 활용   => 주의)await는 아무데나 붙인다고 뒤에 껄 기다리는 게 아님. Promise 앞에만 붙여야만 함.
+
+            // 실행순서도 명확! 콜백지옥도 없다! 직관적이다!
+            const myAsyncAwait = async () => {
+                await axios.get("http://numbersapi.com/random?min=1&max=200");
+                await axios.get("http://numbersapi.com/random?min=1&max=200");
+                await axios.get("http://numbersapi.com/random?min=1&max=200");
+            };
+        </script>
+    </head>
+    <body>
+        <button onclick="myCallback()">callback연습하기!!</button>
+        <button onclick="myPromise()">promise연습하기!!</button>
+        <button onclick="myAsyncAwait()">AsyncAwait연습하기!!</button>
+    </body>
+</html>
+
+<!-- 
+
+콜백함수를 사용하였다. 실행제어권을 넘겨준다. aaa야 내가 콜백함수를 넘겨줄 테니 네가 실행시켜줘. 
+
+-> 콜백지옥 발생
+
+해결하기 위해서 Promise !!  요즘 나오는 기능들은 대부분 promise를 지원한다. mutation도 내부에서 promise를 리턴한다.
+
+promise를 받는 2가지 방법 : .then() , await
+
+  .then()으로 받았을 떄 : 체이닝을 통해서 콜백지옥에서 벗어남. 
+  -> 실행순서가 왔다갔다 거리는 문제발생 (내가 예상한 것과 다르게 실행될 수 있다.)
+
+그래서 최종적으로 await를 사용한다!  
+
+  -->

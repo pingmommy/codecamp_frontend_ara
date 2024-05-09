@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import CustomPaging from "../slider";
 
 const Wrapper = styled.div`
-  height: 300px;
+  height: 200px;
   background-color: lightpink;
   padding: 0 40%;
 `;

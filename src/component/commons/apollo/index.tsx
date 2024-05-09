@@ -37,10 +37,10 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   // }
 
   // 3. 프리렌더링 무시 - useEffect 방법
-  // useEffect(() => {
-  //   const result = localStorage.getItem("accessToken");
-  //   setAccessToken(result ?? "");
-  // }, []);
+  useEffect(() => {
+    const result = localStorage.getItem("accessToken");
+    setAccessToken(result ?? "");
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql",
@@ -53,7 +53,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     link: ApolloLink.from([uploadLink]),
     // cache: new InMemoryCache(), // 글로벌 스테이트값이 저장되는 곳.
     // 컴퓨터의 메모리에다가 백엔드에서 받아온 데이터를 임시저장하는 곳
-    cache: new InMemoryCache(),
+    cache: GLOBAL_STATE,
   });
 
   // prettier-ignore

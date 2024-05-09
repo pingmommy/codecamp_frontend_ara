@@ -4,7 +4,7 @@ export const GlobalStyles2 = css`
   * {
     margin: 0;
     box-sizing: border-box;
-    font-size: 30px;
+    font-size: 18px;
     font-family: "MyFont";
   }
   @font-face {
