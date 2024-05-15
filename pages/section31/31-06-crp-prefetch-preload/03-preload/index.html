@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>프리로드</title>
+
+    <!-- 
+        1. 프리로드란? 
+        한 번에 6개씩 받아오므로 body태그의 이미지는 가장 마지막에 다운로드. 눈에 보이는 이미지를 먼저 다운로드 받아서 보여주고,
+        클릭하면 실행되는 JS와 같은 것들은 나중에 받아오기. - 넥스트에서 추구하는 방향과 같다. 
+        전체 모든 파일 총 다운로드 시간은 더 짧아짐. 
+
+        2. 만약, 여기서 프리페치를 한다면?
+        프리페치는 다음을 위해서 받는 것이므로 마지막에 받음(body의 img 에서 한 번 받고 prefetch로 또 다시 받음. 같은 파일을 2번 다운로드함.)
+    -->
+
+    <link rel="preload" as="image" href="./mybaby04.jpg" />
+    <!-- Disable-cache 체크하고 테스트 (매번 새로운 거 다운로드하겠다.) -->
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index1.js"></script>
+    <script src="./index2.js"></script>
+    <script src="./index3.js"></script>
+    <script src="./index4.js"></script>
+    <script src="./index5.js"></script>
+    <script src="./index6.js"></script>
+  </head>
+  <body>
+    <img src="./mybaby04.jpg" />
+  </body>
+</html>
+
+<!-- 
+    코드 순서는 뒤에 있지만 이미지는 사이즈가 크니까 먼저 다운로드가 이루어졌으면 좋겠는데...
+    그러면 빈 화면을 사용자가 보는 현상도 피할 수 있고, 전체적인 다운로드 시간도 줄일 수 있을 것 같은데...
+
+    => preload로 미리 다운로드  - 현재 페이지에 필요한 것이기 때문에 먼저 실행
+    다운로드의 순서를 제어함으로써 전체 다운로드 성능을 최적화할 수 있다. 
+    이미지 사이즈가 크거나 이미지파일 많을 수록 더욱 성능이 향상됨.
+    
+    여긴 prefetch를 하면 안 된다.
+    다음 페이지에서 필요한 것이기 때문에 마지막에 다운로드한다.
+ -->

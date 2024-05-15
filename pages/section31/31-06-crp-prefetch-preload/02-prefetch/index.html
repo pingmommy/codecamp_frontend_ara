@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>preFetch</title>
+    <!-- 프리페치: 다음 페이지를 미리 다운로드 받으므로, 버튼 클릭시 다운로드 안 받고 부드럽게 이동. (이동 빠름) -->
+    <link rel="prefetch" href="./board.html" />
+  </head>
+  <body>
+    <!-- 라이브서버에서 Disable-cache 해제하고 테스트 -->
+    <a href="./board.html">게시판으로 이동하기</a>
+  </body>
+</html>
+
+<!-- 
+    << 다운로드 성능을 최적화하기 위해서 알아야 하는 전략들 >> 
+     1. prefetch (다음 페이지에 필요한 것을 미리 다운로드 )
+     
+     위의 예제의 경우 버튼을 board.html로 갈 것이 100% 분명하기 때문에 미리 다운로드하면 페이지이동할 때 훨씬 빠르게 이동할 수 있다. 
+
+     근데 버튼을 누를지 안 누를지 어떻게 알아? 안 누를 건데 다운로드받아오면 리소스낭비인데?
+     그럼 hover하면 다운로드하는 로직으로 작성한다.
+
+     주의할 것은 prefetch는 캐시에 다운로드되기 때문에 disableCache를 unchecked한다. 
+ -->

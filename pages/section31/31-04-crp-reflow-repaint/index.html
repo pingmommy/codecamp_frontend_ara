@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Reflow/Repaint</title>
+    <style>
+      .myReflow {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+      }
+
+      .myReflow:hover {
+        width: 110px;
+        height: 110px;
+      }
+
+      .myRepaint {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+
+      .myRepaint:hover {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="myReflow">리플로우 연습!</div>
+    <div class="myRepaint">리페인트 연습!</div>
+  </body>
+</html>
+
+<!-- 리플로우가 더 시간이 걸린다. 위치가 바뀌고 페인팅이 됨. 
+ 리페인트는 레이아웃은 작동하지 않고 페인팅만 되는 것이라서 시간이 상대적으로 덜 걸린다.
+-->
